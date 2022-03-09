@@ -1,0 +1,108 @@
+
+
+
+#KIVY
+
+#: import Factory kivy.factory.Factory
+
+<HomeScreen>:
+    name: "home"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '1.png'
+
+        Button:
+            size_hint: .6, 0.01
+            pos_hint : {'center_x' :.5, 'center_y' :1}
+            background_color: 123, 165, 109, 0.1
+            on_release:
+                root.manager.current = "second"
+                root.start()
+
+
+            Image:
+                source: 'spielen.png'
+                size: root.width, root.height
+
+<Win@Popup>:
+    auto_dismiss: False
+    size_hint: .9, 0.4
+    pos_hint : {'center_x' :.5, 'center_y' :.65}
+    title: ""
+    Button:
+        background_color: 123, 165, 109, 0.01
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: root.width, root.height
+                source: 'win.png'
+        on_release:
+            app.reset(root)
+    #        root.dismiss()
+
+<Lose@Popup>:
+    auto_dismiss: False
+    size_hint: .8, .4
+    pos_hint : {'center_x' :.5, 'center_y' :0.65}
+    title:""
+    FloatLayout:
+        Button:
+            pos_hint: {"center_x":.5,"center_y":.5}
+            background_color: 123, 165, 109, 0.01
+            canvas:
+                Rectangle:
+                    pos: self.pos
+                    size: root.width, root.height
+                    source: 'lose.png'
+            on_press:
+                app.reset(root)
+            #    root.dismiss()
+
+        Label:
+            pos_hint: {"center_x":.5,"center_y":.4}
+            canvas.before:
+                Rectangle:
+                    pos : root.pos
+                    size: root.width, root.height
+                    source: 'rightwordpopup.png'
+        Label:
+            text: root.get()
+            font_size: 32
+            pos_hint: {"center_x":.5,"center_y":.67}
+
+
+
+
+<CharInput>:
+    font_size:40
+    bold: True
+    padding: [1,1,1,1]
+    halign: "center"
+    valign: "center"
+
+<Game>:
+    padding:15
+    spacing:3
+    rows:6
+    cols:5
+
+
+<GameScreen>:
+    name : "second"
+    BoxLayout:
+        padding: [0,110,0,0]
+        orientation:"vertical"
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'gamecanvas.png'
+        Game:
+        Label:
+            text: ""
