@@ -7,7 +7,6 @@
 
 <HomeScreen>:
     name: "home"
-
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
@@ -16,7 +15,6 @@
                 pos: self.pos
                 size: self.size
                 source: '1.png'
-
         Button:
             size_hint: .6, 0.01
             pos_hint : {'center_x' :.5, 'center_y' :1}
@@ -24,12 +22,9 @@
             on_release:
                 root.manager.current = "second"
                 root.start()
-
-
             Image:
                 source: 'spielen.png'
                 size: root.width, root.height
-
 <Win@Popup>:
     auto_dismiss: False
     size_hint: .9, 0.4
